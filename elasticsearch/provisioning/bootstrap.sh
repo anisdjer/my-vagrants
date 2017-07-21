@@ -12,12 +12,12 @@ sudo update-rc.d elasticsearch defaults 95 10
 sudo /etc/init.d/elasticsearch start
 # either of the next two lines is needed to be able to access "localhost:9200" from the host os
 echo "network.bind_host: 0" | sudo tee /etc/elasticsearch/elasticsearch.yml
-sudo echo "network.host: 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
-#sudo echo "http.port: 80" >> /etc/elasticsearch/elasticsearch.yml
+echo "network.host: 0.0.0.0" | sudo tee -a /etc/elasticsearch/elasticsearch.yml
+#sudo echo "http.port: 80" | sudo tee -a /etc/elasticsearch/elasticsearch.yml
 # enable dynamic scripting
-sudo echo "script.inline: on" >> /etc/elasticsearch/elasticsearch.yml
-sudo echo "script.indexed: on" >> /etc/elasticsearch/elasticsearch.yml
+echo "script.inline: on" | sudo tee -a /etc/elasticsearch/elasticsearch.yml
+echo "script.indexed: on" | sudo tee -a /etc/elasticsearch/elasticsearch.yml
 # enable cors (to be able to use Sense)
-sudo echo "http.cors.enabled: true" >> /etc/elasticsearch/elasticsearch.yml
-sudo echo "http.cors.allow-origin: /https?:\/\/.*/" >> /etc/elasticsearch/elasticsearch.yml
+echo "http.cors.enabled: true" | sudo tee -a /etc/elasticsearch/elasticsearch.yml
+echo "http.cors.allow-origin: /https?:\/\/.*/" | sudo tee -a /etc/elasticsearch/elasticsearch.yml
 sudo /etc/init.d/elasticsearch restart
