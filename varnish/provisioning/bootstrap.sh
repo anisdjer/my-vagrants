@@ -22,5 +22,9 @@ backend default {
     .host = "192.168.60.2";
     .port = "80";
 }
+
+sub vcl_fetch {
+        set beresp.do_esi = true;
+}
 ' | sudo tee /etc/varnish/default.vcl
 sudo service varnish restart
